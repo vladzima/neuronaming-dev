@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NEURONAMING – AI Business Name Generator</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/kube.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+	
+	<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+
+    <meta name="description" content="AI powered business names generator"/>
+
+    <meta name="twitter:card" content="NEURONAMING">
+    <meta name="twitter:site" content="@arbdigitalru">
+    <meta name="twitter:title" content="NEURONAMING">
+    <meta name="twitter:description" content="AI powered business names generator">
+    <meta name="twitter:creator" content="@arbdigitalru">
+    <meta name="twitter:image" content="http://neuronaming.net/images/share2.png">
+
+    <meta property="og:title" content="NEURONAMING"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://neuronaming.net/"/>
+    <meta property="og:image" content="http://neuronaming.net/images/share2.png"/>
+    <meta property="og:description" content="AI powered business names generator"/>
+    <meta property="og:site_name" content="NEURONAMING"/>
+
+</head>
+
+<body>
+<div class="header">
+    <div class="row centered tap">
+        <div class="col col-8">
+            <h2>
+                <a href="/" class="no_line">NEURONAMING</a>
+            </h2>
+
+            <h3 class="subheading muted">
+                Artificial intelligence  powered business names generator. Proof of concept.
+           	<br>Names already generated: <span id="total"></span>.
+	    </h3>
+
+
+            <div class="spacer">
+            </div>
+
+            <button data-component="dropdown" data-target="#my-dropdown" class="button outline">
+                <span class="text">Any Industry</span> <span class="caret down"></span></button>
+
+            <div class="dropdown" id="my-dropdown">
+                <a href="" class="close show-on-small"></a>
+                <!-- 	    	<h4>
+                                Filter by industry:
+                            </h4> -->
+                <ul>
+                    <li><a class="" id="All" href="#All">
+                        Any Industry
+                    </a>
+                    </li>
+                    <li><a class="" id="A" href="#A">
+                        Agriculture, Forestry and Fishing
+                    </a>
+                    </li>
+                    <li>
+                        <a class="" id="B" href="#B">
+                            Mining and Quarrying
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="C" href="#C">
+                            Manufacturing
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="D" href="#D">
+                            Electricity, gas, steam and air conditioning supply
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="E" href="#E">
+                            Water supply, sewerage, waste management and remediation activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="F" href="#F">
+                            Construction
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="G" href="#G">
+                            Wholesale and retail trade; repair of motor vehicles and motorcycles
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="H" href="#H">
+                            Transportation and storage
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="I" href="#I">
+                            Accommodation and food service activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="J" href="#J">
+                            Information and communication
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="K" href="#K">
+                            Financial and insurance activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="L" href="#L">
+                            Real estate activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="M" href="#M">
+                            Professional, scientific and technical activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="N" href="#N">
+                            Administrative and support service activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="O" href="#O">
+                            Public administration and defence; compulsory social security
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="P" href="#P">
+                            Education
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="Q" href="#Q">
+                            Human health and social work activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="R" href="#R">
+                            Arts, entertainment and recreation
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="S" href="#S">
+                            Other service activities
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" id="T" href="#T">
+                            Activities of households as employers
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-xl">
+</div>
+<div class="names">
+    <div class="row centered" id="start">
+        <div class="col col-8 namebox">
+            <a href="javascript:;" class="button primary big gen-btn" role="button">Generate Names &rarr;</a>
+        </div>
+    </div>
+    <div class="row centered hidden" id="working">
+        <div class="col col-8 namebox">
+            <p><i class="flaticon-robot-design"></i> Robots are thinking...</p>
+        </div>
+    </div>
+    <div id="results" class="hidden">
+        <div class="row centered">
+            <div class="col col-2 namebox"><p class="muted">Click on a name to copy</p></div>
+            <div class="col col-2 namebox"><h5 id="name1" class="name" data-clipboard-target="#name1"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name2" class="name" data-clipboard-target="#name2"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name3" class="name" data-clipboard-target="#name3"></h5></div>
+        </div>
+        <div class="spacer sm">
+        </div>
+        <div class="row centered">
+            <div class="col col-2 namebox"><h5 id="name4" class="name" data-clipboard-target="#name4"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name5" class="name" data-clipboard-target="#name5"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name6" class="name" data-clipboard-target="#name6"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name7" class="name" data-clipboard-target="#name7"></h5></div>
+        </div>
+        <div class="spacer sm">
+        </div>
+        <div class="row centered">
+            <div class="col col-2 namebox"><h5 id="name8" class="name" data-clipboard-target="#name8"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name9" class="name" data-clipboard-target="#name9"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name10" class="name" data-clipboard-target="#name10"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name11" class="name" data-clipboard-target="#name11"></h5>
+         </div>
+        </div>
+        <div class="spacer sm">
+        </div>
+        <div class="row centered">
+            <div class="col col-2 namebox"><h5 id="name12" class="name" data-clipboard-target="#name12"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name13" class="name" data-clipboard-target="#name13"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name14" class="name" data-clipboard-target="#name14"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name15" class="name" data-clipboard-target="#name15"></h5></div>
+        </div>
+        <div class="spacer sm">
+        </div>
+        <div class="row centered">
+            <div class="col col-2 namebox"><h5 id="name16" class="name" data-clipboard-target="#name16"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name17" class="name" data-clipboard-target="#name17"></h5></div>
+            <div class="col col-2 namebox"><h5 id="name18" class="name" data-clipboard-target="#name18"></h5></div>
+            <div class="col col-2 namebox"><a href="#" class="button primary gen-btn" role="button">Generate New &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer-xl">
+</div>
+<hr>
+<div class="spacer">
+            </div>
+<div class="info">
+    <div class="row centered">
+        <div class="col col-8">
+            <h4>
+                How it works?
+            </h4>
+            <p>
+                All names are generated in real time by recurrent neural network, built on scientific computing framework Torch using the LSTM model – mostly for fun and research. 3kk active UK companies data points
+                were used to teach the AI. Industry classification is based on "<a
+                    href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/455263/SIC_codes_V2.pdf"
+                    target='_blank'>Standard industrial classification of economic activities (SIC)</a>" and for some industries  better results are produced because of a larger amount of companies analysed. Neural
+                network does not copy real world brands thus any such reference is purely coincidental.
+            </p>
+        </div>
+        
+    </div>
+</div>
+<div class="spacer">
+</div>
+<div class="copyright">
+    <div class="row centered">
+        <div class="col col-8">
+            <div class="group">
+                <div class="float-left">
+                    <h4 class="normal">
+                        <mark>Project by <a href="http://arb.digital">arb digital</a> & <a href="http://facebook.com/smirnovslava" target="_blank">Slava</a></mark>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacer">
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/clipboard.min.js"></script>
+<script src="js/kube.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85909667-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script src="https://cdn.smooch.io/smooch.min.js"></script>
+<script>
+	Smooch.init({
+    appToken: '8mriqe6cynrppnzlqirxiu4e2',
+    customText: {
+        headerText: 'NeuroHelp? Yeah, maybe.',
+        inputPlaceholder: 'Type a message...',
+        sendButtonText: 'Send',
+    }
+});
+</script>
+</body>
+</html>

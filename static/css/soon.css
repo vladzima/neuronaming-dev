@@ -1,0 +1,34 @@
+body {
+
+
+background: #24C6DC; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #24C6DC , #514A9D); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #24C6DC , #514A9D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+
+.white {
+	color: #ffffff;
+}
+
+.grey {
+	color: #d1d1d1;
+}
+
+.thin {
+	font-weight: normal !important;
+	font-style: normal !important;
+}
+
+
+@media screen and (max-width: 480px) {
+    h1 {
+    	font-size: 36px;
+    }
+}
+
+.wrapper {
+	margin: auto;
+	min-height: 100%;
+	background-image: url(../images/bg.png);
+	background-size: 30%;
+}
