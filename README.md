@@ -1,15 +1,25 @@
 # Installation
 
-Debian / Ubuntu (14.04/16.04).
+Debian / Ubuntu (14.04/16.04). CPU-only.
+
+> Keep in mind, that initial version was create in 2015, so there could be outdates dependencies and such. Please contribute to update the code.
 
 ### Python, virtualenv and rnn
 
-Install `sudo` and `git` if it's not on the system yet: `apt-get install sudo && sudo apt-get install git-core`
+Install `sudo` and `git` if it's not on the system yet:
+```
+apt-get install sudo
+sudo apt-get install git-core
+```
 
-Also `nano` can be a good simple choice for a file editor: `sudo apt-get install nano`
+Also `nano` can be a good starter choice for a file editor (used in this guide): `sudo apt-get install nano`
 
 ---
 
+```
+git clone https://github.com/vladzima/neuronaming-dev
+cd neuronaming-dev
+```
 ```
 sudo apt-get -y install python2.7-dev
 sudo apt-get install libhdf5-dev
@@ -30,7 +40,7 @@ git clone https://github.com/jcjohnson/torch-rnn
 cd torch-rnn
 ```
 
-Add to new users `.bashrc`:
+Open `nano ~/.bashrc` and add:
 ```
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel/python
@@ -78,129 +88,86 @@ luarocks install lua-cjson 2.1.0
 
 **Attention!** You always need to initiate `th` from the same directory where `torch-rnn/LanguageModel.lua` is.
 
-### Test
+#### Testing
 
 Copy and extract pretrained model checkpoints directory:
 ```
-cd ~/torch-rnn/cv
-wget 
-gzip -cd cv_server.cpgz | cpio -idmv
+cd ~/torch-rnn
+wget https://storage.googleapis.com/nnnet_storage/cv.cpgz
+gzip -cd cv.cpgz | cpio -idmv
+su - neuronaming
 ```
 
-//перелогиниваемся
+Now test:
+```
+workon neuronaming
+th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/checkpoint.t7 -length 400 -gpu -1
+```
 
-//тестируем
-$ workon neuronaming
-#$ th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/checkpoint.t7 -length 400 -gpu -1
-$ th sample.lua -checkpoint cv/C/checkpoint.t7 -length 400 -gpu -1
+### Nginx and server
 
-4) замечание
-//и еще, желательно, чтобы пути к файлам, с которыми работает th, из server.py, были бы абсолютными
+Login as your root user and install `nginx`:
+```
+sudo apt-get update
+sudo apt-get install nginx
+```
 
-
-деплой на nginx
-
-1) логинимся под root и ставим nginx
-# apt-get update
-# apt-get install nginx
-
-2) снова ставим virtualenv и virtualenvwrapper, т.к. flask любит python3, а не python2
-# apt-get install python3-pip
-# pip3 install virtualenv virtualenvwrapper
-
-//в ~/.bashrc нужного пользователя (neuronaming) дописываем
+Install `virtualenv` и `virtualenvwrapper` again, as Flask likes Python3:
+```
+sudo apt-get install python3-pip
+pip3 install virtualenv virtualenvwrapper
+su - neuronaming
+```
+Open `nano ~/.bashrc` and add:
+```
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/site
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
-//и перелогиниваемся под юзером
-
+```
+```
+su - neuronaming
 $ mkvirtualenv env-name
-[ вариант с выбором версии python: "mkvirtualenv --python=python3 env-name", но по-умолчанию ставится версия 3]
+```
+```
+pip3 install uwsgi flask
+```
 
-//при этом автоматически идет вход в виртуалку; если этого не произошло - делаем:
-$ workon env-name
-//далее - все под виртуальной средой
+If ufw firewall is on: `ufw allow 5000`
 
-3) ставим flask и uwsgi
-$ pip3 install uwsgi flask
+Create socket:
+```
+mkfifo /home/neuronaming/site/server.sock
+```
 
-4) делаем тестовое приложение на flask
-$ touch ~/site/server.py
+Create autostart script:
 
-//копируем туда вот это:
+###### For Ubuntu 14.04
+```
+touch /etc/init/server.conf
+nano /etc/init/server.conf
+```
 
-from flask import Flask
-application = Flask(__name__)
-@application.route("/")
-def hello():
-return "<h1'>Test Flask app is worked!</h1>"
-if __name__ == "__main__":
-application.run(host='0.0.0.0')
-
-5) проверяем его работоспособность
-$ python server.py
-
-//для ubuntu 16.04 - если настроен файрволл ufw - то:
-# ufw allow 5000
-
-//и в браузере открываем приложение по IP или по домену с портом :5000
-
-6) делаем точку входа для wsgi (файл wsgi.py)
-$ touch ~/site/wsgi.py
-
-//копируем туда вот это:
-
-from myproject import application
-if __name__ == "__main__":
-application.run()
-
-7) тестируем работу сервера uwsgi (опять в браузере, но порт :8000)
-$ uwsgi --socket 0.0.0.0:8000 --protocol=http -w wsgi
-
-8) создаем socket-файл
-$ mkfifo /home/neuronaming/site/server.sock
-
-9) делаем ini-конфиг для wsgi
-$ touch ~/site/server.ini
-
-//копируем туда вот это:
-
-[uwsgi]
-module = wsgi
-master = true
-processes = 5
-socket = /home/neuronaming/site/server.sock
-chmod-socket = 660
-vacuum = true
-die-on-term = true
-
-10) создаем скрипт автостарта
-а) для ubuntu 14.04
-
-# touch /etc/init/server.conf
-
-//копируем туда вот это:
-
+Copy in `server.conf`:
+```
 description "uWSGI instance to serve neuronaming project"
 start on runlevel [2345]
 stop on runlevel [!2345]
-#тут - тот uid, под которым стартует nginx; посмотреть его можно через "top b|less"
+
+# Place actual nginx uid instead of 2345; lookup: "top b|less"
+
 setuid www-data
-#группу оставляем ту же, что у нашего основного юзера
 setgid neuronaming
-#путь к виртуалке
 env PATH=/home/neuronaming/.virtualenvs/neuronaming/bin
-#домашний каталог проекта
 chdir /home/neuronaming/site
-exec uwsgi --ini myproject.ini
+exec uwsgi --ini server.ini
+```
 
-б) для ubuntu 16.04
-
-# touch /etc/systemd/system/myproject.service
-
-//копируем туда вот это:
-
+###### For Ubuntu 16.04
+```
+touch /etc/systemd/system/server.service
+nano /etc/systemd/system/server.service
+```
+Copy in `server.service`:
+```
 [Unit]
 Description=uWSGI instance to serve neuronaming project
 After=network.target
@@ -212,22 +179,30 @@ Environment="PATH=/home/neuronaming/.virtualenvs/neuronaming/bin"
 ExecStart=/home/neuronaming/.virtualenvs/neuronaming/bin/uwsgi --ini server.ini
 [Install]
 WantedBy=multi-user.target
+```
+Start `wsgi`:
+###### For Ubuntu 14.04
+```
+sudo start server
+```
+###### For Ubuntu 16.04
+```
+sudo systemctl start server
+sudo systemctl enable server
+```
 
-11) стартуем wsgi
-а) для ubuntu 14.04
-# start server
-
-б) для ubuntu 16.04
-# systemctl start server
-# systemctl enable server
-
-11) если домен и проект на vds - один, то нижеследущее вписываем в /etc/nginx/sites-available/default
+If domain and project name are the same:
+```
+nano /etc/nginx/sites-available/default
+```
+Copy:
+```
 server {
     listen 80 default_server;
     listen [::]:80 default_server ipv6only=on;
     root /home/neuronaming/site/static;
     index index.html;
-    server_name neuronaming.net;
+    server_name DOMAIN;
     location / {
             try_files $uri $uri/ =404;
     }
@@ -237,13 +212,21 @@ server {
     }
 }
 
-12) рестартуем nginx
-а) для ubuntu 14.04
-# service nginx restart
+# Insert actual domain in place of DOMAIN
+```
 
-б) для ubuntu 16.04
-# systemctl restart nginx
+Restart nginx:
+###### For Ubuntu 14.04
+```
+sudo service nginx restart
+```
+###### For Ubuntu 16.04
+```
+sudo systemctl restart nginx
+```
 
-//если настроен файрволл ufw - то:
-# ufw delete allow 5000
-# ufw allow 'Nginx Full'
+If ufw firewall is active:
+```
+ufw delete allow 5000
+ufw allow 'Nginx Full'
+```
