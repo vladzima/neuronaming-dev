@@ -47,14 +47,12 @@ export PROJECT_HOME=$HOME/devel/python
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 source ~/.local/bin/virtualenvwrapper.sh
 ```
-Relogin:
+Relogin and create virtual env:
 ```
 su - neuronaming
-```
-```
 mkvirtualenv -p python2 neuronaming
 ```
-
+Install deps:
 ```
 cd ~/torch-rnn
 pip install -r requirements.txt
@@ -95,7 +93,6 @@ Copy and extract pretrained model checkpoints directory:
 cd ~/torch-rnn
 wget https://storage.googleapis.com/nnnet_storage/cv.cpgz
 gzip -cd cv.cpgz | cpio -idmv
-su - neuronaming
 ```
 
 Now test:
@@ -125,9 +122,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 ```
 ```
 su - neuronaming
-$ mkvirtualenv env-name
-```
-```
+mkvirtualenv env-name
 pip3 install uwsgi flask
 ```
 
@@ -191,11 +186,7 @@ sudo systemctl start server
 sudo systemctl enable server
 ```
 
-If domain and project name are the same:
-```
-nano /etc/nginx/sites-available/default
-```
-Copy:
+Open nginx conf: `nano /etc/nginx/sites-available/default` and copy:
 ```
 server {
     listen 80 default_server;
