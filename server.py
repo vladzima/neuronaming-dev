@@ -31,7 +31,7 @@ def get_names_counter():
 @app.route("/api01/generate_names", methods=['GET'])
 def generate_names():
     category = request.args.get('category')
-    result = check_output(['/home/neuronaming/torch/install/bin/th', '/home/neuronaming/torch/torch-rnn/sample.lua', '-checkpoint', '/home/neuronaming/torch/torch-rnn/cv/'+category+'/checkpoint.t7', '-length', '400', '-gpu', '-1'])
+    result = check_output(['/home/neuronaming/torch/install/bin/th', 'sample.lua', '-checkpoint', 'cv/'+category+'/checkpoint.t7', '-length', '400', '-gpu', '-1'])
     res = [v.decode('utf-8') for v in result.splitlines() if len(v.strip())][1:11]
     sh = shelve.open(SHELVE_STORAGE)
     sh['total'] += len(res)

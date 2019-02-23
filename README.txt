@@ -9,22 +9,27 @@
 # apt-get install libhdf5-dev
 [debian: # apt-get install python-h5py]
 
-# adduser neuronaming
+$ adduser neuronaming
 //добавляем neuronaming в sudoers
+$ usermod -aG sudo neuronaming
 
 //логинимся под neuronaming
+$ su - neuronaming
 $ cd ~
 $ git clone https://github.com/jcjohnson/torch-rnn
 $ cd torch-rnn
 
 //дописываем в .bashrc юзера neuronaming следующее:
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/devel/python
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/devel/python
+#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+#source /usr/local/bin/virtualenvwrapper.sh
+
+export WORKON_HOME=$HOME/.virtualenvs                                                    │pre-commit.sample                                     100% 1642    16.9KB/s   00:00
+source ~/.local/bin/virtualenvwrapper.sh
 //и перелогиниваемся
 
-$ mkvirtualenv —python=python2 neuronaming
+$ mkvirtualenv -p python2 neuronaming
 //делаем "workon neuronaming", если не вошли в новую виртуалку автоматически
 $ cd ~/torch-rnn
 $ pip install -r requirements.txt
@@ -42,6 +47,7 @@ $ TORCH_LUA_VERSION=LUA53  ./install.sh
 //делаем
 $ source ~/.bashrc
 //а лучше - перелогиниваемся
+$ su - neuronaming
 
 $ luarocks install torch
 $ luarocks install nn
@@ -61,7 +67,8 @@ cd АБСОЛЮТНЫЙ_ПУТЬ/torch-rnn
 
 //тестируем
 $ workon neuronaming
-$ th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/checkpoint.t7 -length 400 -gpu -1
+#$ th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/checkpoint.t7 -length 400 -gpu -1
+$ th sample.lua -checkpoint cv/C/checkpoint.t7 -length 400 -gpu -1
 
 4) замечание
 //и еще, желательно, чтобы пути к файлам, с которыми работает th, из server.py, были бы абсолютными

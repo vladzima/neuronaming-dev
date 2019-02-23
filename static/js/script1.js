@@ -14,7 +14,7 @@ $(function () {
     var curSelect = 'All';
     /* //var site_addr = 'http://104.236.111.81:5000';
     var site_addr = 'http://neuronaming.net'; */
-    
+
     $(document).on('click', '#my-dropdown a', function () {
         //curSelect = $(this).data('value');
         curSelect = $(this)[0].id;
