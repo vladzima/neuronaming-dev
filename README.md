@@ -13,7 +13,7 @@ Table of Contents
 # About
 ML powered business names generator with web server and UI. Proof of concept. Industry classification is based on UK ["Standard industrial classification of economic activities (SIC)"](https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic).
 
-Based on Torch LSTM implementation: [torch-rnn](https://github.com/jcjohnson/torch-rnn) by Justin Johnson.
+Based on Torch LSTM implementation: [torch-rnn](https://github.com/jcjohnson/torch-rnn) by Justin Johnson. See [Wiki](https://github.com/vladzima/neuronaming-dev/wiki) for technical in-depth on the models.
 
 Pre-trained model checkpoints included as separate download (See [here](#testing)). You can also [download](https://storage.googleapis.com/nnnet_storage/cv_full.cpgz) an archive of every checkpoint of model training for each category (heavy lifting alert: ~3.5GB).
 
