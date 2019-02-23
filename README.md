@@ -21,7 +21,7 @@ Pre-trained model checkpoints included as separate download (See [here](#testing
 
 Debian / Ubuntu (14.04/16.04). CPU-only.
 
-> Keep in mind, that initial version was create in 2015, so there could be outdates dependencies and such. Please contribute to update the code.
+> Keep in mind, that initial version was create in 2015, so there could be outdates dependencies and such. [Please contribute to update the code.](../blob/master/CONTRIBUTING.md)
 
 ### Step 1. Python, virtualenv and rnn
 
