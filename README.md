@@ -15,7 +15,7 @@ ML powered business names generator with web server and UI. Proof of concept. In
 
 Based on Torch LSTM implementation: [torch-rnn](https://github.com/jcjohnson/torch-rnn) by Justin Johnson.
 
-Pretrained model checkpoints included as separate download (See [here](#testing)).
+Pre-trained model checkpoints included as separate download (See [here](#testing)).
 
 # Installation
 
@@ -54,8 +54,6 @@ usermod -aG sudo neuronaming
 Login as new user:
 ```
 su - neuronaming
-cd ~
-git clone https://github.com/jcjohnson/torch-rnn
 cd torch-rnn
 ```
 
@@ -107,7 +105,7 @@ luarocks install lua-cjson 2.1.0
 
 #### Testing
 
-Copy and extract pretrained model checkpoints directory:
+Copy and extract pre-trained model checkpoints directory:
 ```
 cd ~/torch-rnn
 wget https://storage.googleapis.com/nnnet_storage/cv.cpgz
