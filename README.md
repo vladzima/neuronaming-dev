@@ -12,9 +12,9 @@ Table of Contents
   * [License](#license)
 
 # About
-## ML powered business names generator on Torch with Flask web server and UI. Proof of concept.
+**ML powered business names generator on Torch with Flask web server and UI. Proof of concept.**
 
-3 million active UK companies data points were used to teach the neural network. Industry classification is based on UK [Standard industrial classification of economic activities (SIC)](https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic). For some industries better results are produced because of a larger amount of companies analysed.
+3 million active UK companies data points were used to train the neural network. Industry classification is based on UK [Standard industrial classification of economic activities (SIC)](https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic). For some industries better results are produced because of a larger amount of companies analysed.
 
 Based on Torch LSTM implementation: [torch-rnn](https://github.com/jcjohnson/torch-rnn) by Justin Johnson. See [Wiki](https://github.com/vladzima/neuronaming-dev/wiki) for technical in-depth on the models.
 
