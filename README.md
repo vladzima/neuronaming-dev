@@ -1,7 +1,20 @@
+Table of Contents
+=================
+
+  * [About](#about)
+  * [Installation](#installation)
+    - [Python, virtualenv and rnn](#python-virtualenv-and-rnn)
+    - [Torch, luarocks](#torch-luarocks)  
+      - [Testing](#testing)   
+    - [Nginx and server](#nginx-and-server)
+  * [License](#license)
+
 # About
 ML powered business names generator with web server and UI. Proof of concept. Industry classification is based on UK ["Standard industrial classification of economic activities (SIC)"](https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic).
 
-Pretrained model checkpoints included as separate download (See [here](https://github.com/vladzima/neuronaming-dev#testing)).
+Based on Torch LSTM implementation: [torch-rnn](https://github.com/jcjohnson/torch-rnn) by Justin Johnson.
+
+Pretrained model checkpoints included as separate download (See [here](#testing)).
 
 # Installation
 
@@ -239,3 +252,30 @@ Please check that the resulting project structure is relevant:
     ├── storage.dat
     └── wsgi.py
 ```
+# Custom model
+
+To train your own model and use in to generate new text, please consult with the original torch-rnn manual: https://github.com/jcjohnson/torch-rnn#usage.
+
+# License
+
+MIT License
+
+Copyright (c) 2015 Neuronaming
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
