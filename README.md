@@ -3,10 +3,10 @@ Table of Contents
 
   * [About](#about)
   * [Installation](#installation)
-    - [Step 1. Python, virtualenv and rnn](#python-virtualenv-and-rnn)
-    - [Step 2. Torch and luarocks](#torch-luarocks)  
+    - [Step 1. Python, virtualenv and rnn](#step-1-python-virtualenv-and-rnn)
+    - [Step 2. Torch and luarocks](#step-2-torch-luarocks)  
       - [Testing](#testing)   
-    - [Step 3. Nginx and wsgi](#nginx-and-server)
+    - [Step 3. Nginx and wsgi](#step-3-nginx-and-server)
   * [Custom model](#custom-model)
   * [License](#license)
 
