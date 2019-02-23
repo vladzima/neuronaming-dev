@@ -18,7 +18,9 @@ Industry classification is based on UK [Standard industrial classification of ec
 
 Based on Torch LSTM implementation: [torch-rnn](https://github.com/jcjohnson/torch-rnn) by Justin Johnson. See [Wiki](https://github.com/vladzima/neuronaming-dev/wiki) for technical in-depth on the models.
 
-Pre-trained model checkpoints included as separate download (See [here](#testing)). **All training data is available in [Contribution guide](../master/CONTRIBUTING.md).**
+Pre-trained model checkpoints included as separate download (See [here](#testing)).
+
+**All training data is available in [Contribution guide](../master/CONTRIBUTING.md).**
 
 # Installation
 
