@@ -1,67 +1,91 @@
-    уставновка neuronaming (+torch +rnn) на debian 8
+# Installation
 
-1) python, virtualenv и rnn
+Debian / Ubuntu (14.04/16.04).
 
-//ставим sudo, если его нет в системе
-# apt-get install sudo
+### Python, virtualenv and rnn
 
-# apt-get -y install python2.7-dev
-# apt-get install libhdf5-dev
-[debian: # apt-get install python-h5py]
+Install `sudo` and `git` if it's not on the system yet: `apt-get install sudo && sudo apt-get install git-core`
 
-$ adduser neuronaming
-//добавляем neuronaming в sudoers
-$ usermod -aG sudo neuronaming
+Also `nano` can be a good simple choice for a file editor: `sudo apt-get install nano`
 
-//логинимся под neuronaming
-$ su - neuronaming
-$ cd ~
-$ git clone https://github.com/jcjohnson/torch-rnn
-$ cd torch-rnn
+---
 
-//дописываем в .bashrc юзера neuronaming следующее:
-#export WORKON_HOME=$HOME/.virtualenvs
-#export PROJECT_HOME=$HOME/devel/python
-#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-#source /usr/local/bin/virtualenvwrapper.sh
+```
+sudo apt-get -y install python2.7-dev
+sudo apt-get install libhdf5-dev
+```
+Debian: `apt-get install python-h5py`
 
-export WORKON_HOME=$HOME/.virtualenvs                                                    │pre-commit.sample                                     100% 1642    16.9KB/s   00:00
+Add user `neuronaming` and include in sudoers:
+```
+adduser neuronaming
+usermod -aG sudo neuronaming
+```
+
+Login as new user:
+```
+su - neuronaming
+cd ~
+git clone https://github.com/jcjohnson/torch-rnn
+cd torch-rnn
+```
+
+Add to new users `.bashrc`:
+```
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/devel/python
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 source ~/.local/bin/virtualenvwrapper.sh
-//и перелогиниваемся
+```
+Relogin:
+```
+su - neuronaming
+```
+```
+mkvirtualenv -p python2 neuronaming
+```
 
-$ mkvirtualenv -p python2 neuronaming
-//делаем "workon neuronaming", если не вошли в новую виртуалку автоматически
-$ cd ~/torch-rnn
-$ pip install -r requirements.txt
-//если валится с ошибкой - проходим по всему requirements.txt и ставим каждую либу отдельно вручную:
-//$ pip install ИМЯ_ЛИБЫ
+```
+cd ~/torch-rnn
+pip install -r requirements.txt
+```
+In case `h5py` installation fails, open `requirements.txt` and remove version number: `h5py==2.5.0 > h5py`
 
-2) ставим torch по инструкции: http://torch.ch/docs/getting-started.html#_ , а именно:
+### Torch, luarocks
 
-$ git clone https://github.com/torch/distro.git ~/torch —recursive
-$ cd ~/torch; bash install-deps;
-//лучше сразу компилить под lua53, а не под дефолтный luajit
-$ TORCH_LUA_VERSION=LUA53  ./install.sh
-//отвечаем "yes" на вопрос о том, хотим ли добавить строку в .bashrc
+(Manual: http://torch.ch/docs/getting-started.html)
 
-//делаем
-$ source ~/.bashrc
-//а лучше - перелогиниваемся
-$ su - neuronaming
+```
+git clone https://github.com/torch/distro.git ~/torch
+cd ~/torch; bash install-deps;
 
-$ luarocks install torch
-$ luarocks install nn
-$ luarocks install optim
-$ luarocks install lua-cjson
+# Takes forever!
+```
+```
+TORCH_LUA_VERSION=LUA53  ./install.sh
 
-//всегда нужно, чтобы то, что запускает скрипт th, запускалось бы из того же каталога, где лежит файл torch-rnn/LanguageModel.lua ;
-//наверняка можно добавить в lua-пути к либам этот каталог, но проще всего это сделать, поправив torch/install/bin/th : до "exec" в нем вставляем:
+# Answer yes about .bashrc
+```
+```
+su - neuronaming
+luarocks install torch
+luarocks install nn
+luarocks install optim
+luarocks install lua-cjson 2.1.0
 
-cd АБСОЛЮТНЫЙ_ПУТЬ/torch-rnn
+# Takes time!
+```
 
-3) тест
+**Attention!** You always need to initiate `th` from the same directory where `torch-rnn/LanguageModel.lua` is.
 
-//копируем ~/torch-rnn/cv на новый сервер
+### Test
+
+Copy and extract pretrained model checkpoints directory:
+```
+cd ~/torch-rnn/cv
+wget 
+gzip -cd cv_server.cpgz | cpio -idmv
+```
 
 //перелогиниваемся
 
@@ -74,7 +98,7 @@ $ th sample.lua -checkpoint cv/C/checkpoint.t7 -length 400 -gpu -1
 //и еще, желательно, чтобы пути к файлам, с которыми работает th, из server.py, были бы абсолютными
 
 
-    деплой на nginx
+деплой на nginx
 
 1) логинимся под root и ставим nginx
 # apt-get update
@@ -110,9 +134,9 @@ from flask import Flask
 application = Flask(__name__)
 @application.route("/")
 def hello():
-    return "<h1'>Test Flask app is worked!</h1>"
+return "<h1'>Test Flask app is worked!</h1>"
 if __name__ == "__main__":
-    application.run(host='0.0.0.0')
+application.run(host='0.0.0.0')
 
 5) проверяем его работоспособность
 $ python server.py
@@ -129,7 +153,7 @@ $ touch ~/site/wsgi.py
 
 from myproject import application
 if __name__ == "__main__":
-    application.run()
+application.run()
 
 7) тестируем работу сервера uwsgi (опять в браузере, но порт :8000)
 $ uwsgi --socket 0.0.0.0:8000 --protocol=http -w wsgi
@@ -199,18 +223,18 @@ WantedBy=multi-user.target
 
 11) если домен и проект на vds - один, то нижеследущее вписываем в /etc/nginx/sites-available/default
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        root /home/neuronaming/site/static;
-        index index.html;
-        server_name neuronaming.net;
-        location / {
-                try_files $uri $uri/ =404;
-        }
-        location /api01 {
-            include uwsgi_params;
-            uwsgi_pass unix:/home/neuronaming/site/server.sock;
-        }
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+    root /home/neuronaming/site/static;
+    index index.html;
+    server_name neuronaming.net;
+    location / {
+            try_files $uri $uri/ =404;
+    }
+    location /api01 {
+        include uwsgi_params;
+        uwsgi_pass unix:/home/neuronaming/site/server.sock;
+    }
 }
 
 12) рестартуем nginx
