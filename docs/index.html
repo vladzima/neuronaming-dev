@@ -11,7 +11,8 @@
 
     <link rel="stylesheet" href="css/kube.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/flaticon2.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet">
 
 	<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
 	<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
@@ -32,22 +33,6 @@
     <meta property="og:description" content="AI powered business names generator"/>
     <meta property="og:site_name" content="NEURONAMING"/>
 
-    <!-- Chatra {literal} -->
-<script>
-    (function(d, w, c) {
-        w.ChatraID = 'HPEMFGauJMJP8aDZn';
-        var s = d.createElement('script');
-        w[c] = w[c] || function() {
-            (w[c].q = w[c].q || []).push(arguments);
-        };
-        s.async = true;
-        s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
-        + '//call.chatra.io/chatra.js';
-        if (d.head) d.head.appendChild(s);
-    })(document, window, 'Chatra');
-</script>
-<!-- /Chatra {/literal} -->
-
 </head>
 
 <body>
@@ -56,13 +41,13 @@
 <div class="header">
     <div class="row centered tap">
         <div class="col col-8">
-            <h2>
+            <h1>
                 <a href="/" class="no_line">NEURONAMING</a>
-            </h2>
+            </h1>
 
             <h3 class="subheading muted">
-                Artificial intelligence  powered business names generator. Proof of concept.
-           	<br>Names already generated: <span id="total"></span>.
+                Artificial intelligence powered business names generator. Proof of concept.
+           	<br><span style="font-weight:500">Status: maintenance_OFFLINE</span></b>
 	    </h3>
 
 
@@ -246,21 +231,23 @@
 </div>
 </section>
 <section class="site-footer">
-<hr>
-<div class="spacer">
-            </div>
+  <div class="ololo">
+
+
 <div class="info">
+  <div class="spacer">
+              </div>
     <div class="row centered">
         <div class="col col-8">
-            <h4>
+            <h3>
                 How it works?
-            </h4>
+            </h3>
             <p>
                 All names are generated in real time by recurrent neural network, built on scientific computing framework Torch using the LSTM model – mostly for fun and research. 3 million active UK companies data points
                 were used to teach the AI. Industry classification is based on "<a
-                    href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/455263/SIC_codes_V2.pdf"
+                    href="https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic"
                     target='_blank'>Standard industrial classification of economic activities (SIC)</a>" and for some industries  better results are produced because of a larger amount of companies analysed. Neural
-                network does not copy real world brands thus any such reference is purely coincidental. <a onclick="Chatra('openChat', true)"><b>Contact us</b></a>.
+                network does not copy real world brands thus any such reference is purely coincidental. <a href="mailto:vlad@arbatov.me"><b>Contact us</b></a>.
             </p>
         </div>
 
@@ -274,7 +261,7 @@
             <div class="group">
                 <div class="float-left">
                     <h4 class="normal">
-                        <mark>Project by <a href="https://arbatov.me">Vlad Arbatov</a> & <a href="http://facebook.com/smirnovslava" target="_blank">Slava Smirnov</a></mark>
+                        <mark style="font-weight:400">Project by <a href="https://arbatov.me">Vlad Arbatov</a> & <a href="http://facebook.com/smirnovslava" target="_blank">Slava Smirnov</a></mark><br><small style="color: #918e8c">Neuronaming R&D 2015 — <span id="year">2019</span></small>
                     </h4>
                 </div>
             </div>
@@ -283,12 +270,17 @@
 </div>
 <div class="spacer">
 </div>
+</div>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="js/clipboard.min.js"></script>
 <script src="js/kube.js"></script>
 <!-- <script src="js/script1.js"></script> -->
+
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
 
 <script>
 

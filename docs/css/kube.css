@@ -1,4 +1,4 @@
-@import url('https://rsms.me/interface/interface.css');
+@import url('https://rsms.me/Rubik/Rubik.css');
 
 .animated {
   -webkit-animation-duration: 1s;
@@ -416,7 +416,7 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none; }
 
 body {
-  font-family: "Interface", Helvetica, sans-serif;
+  font-family: "Rubik", Helvetica, sans-serif;
   line-height: 24px;
   font-size: 16px;
   color: #333;
@@ -429,7 +429,7 @@ a:hover {
   color: #f34248; }
 
 h1.title, h1, h2, h3, h4, h5, h6 {
-  font-family: "Interface", Helvetica, sans-serif;
+  font-family: "Rubik", Helvetica, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   color: #000;
@@ -918,7 +918,7 @@ input,
 select,
 textarea,
 fieldset {
-  font-family: "Interface", Helvetica, sans-serif;
+  font-family: "Rubik", Helvetica, sans-serif;
   font-size: 14px; }
 
 input[type="email"],
@@ -1138,7 +1138,7 @@ select.success {
 
 button,
 .button {
-  font-family: "Interface", Helvetica, sans-serif;
+  font-family: "Rubik", Helvetica, sans-serif;
   font-size: 14px;
   font-weight: normal;
   text-decoration: none;

@@ -1,31 +1,32 @@
-* {
-  margin: 0;
+@media screen and (min-width: 480px) {
+  * {
+    margin: 0;
+  }
+  html, body {
+    height: 100% !important;
+  }
+  .page-wrap {
+    min-height: 100% !important;
+    margin-bottom: -350px! important;
+  }
+  .page-wrap:after {
+    content: "" !important;
+    display: block !important;
+  }
+  .site-footer, .page-wrap:after {
+    height: 350px !important;
+  }
 }
-html, body {
-  height: 100% !important;
-}
-.page-wrap {
-  min-height: 100% !important;
-  margin-bottom: -320px! important; 
-}
-.page-wrap:after {
-  content: "" !important;
-  display: block !important;
-}
-.site-footer, .page-wrap:after {
-  height: 320px !important; 
-}
+
 .site-footer {
-
+  background-color: #f0eeec;
 }
-
-
 
 @-webkit-keyframes rotate {
     from {
         -webkit-transform: rotate(0deg);
     }
-    to { 
+    to {
         -webkit-transform: rotate(360deg);
     }
 }
@@ -38,8 +39,8 @@ html, body {
     width: 30px;
     margin: 30px;
     -webkit-transition: all 0.5s ease-in;
-    -webkit-animation-name:             rotate; 
-    -webkit-animation-duration:         1.0s; 
+    -webkit-animation-name:             rotate;
+    -webkit-animation-duration:         1.0s;
     -webkit-animation-iteration-count:  infinite;
     -webkit-animation-timing-function: linear;
 }
@@ -109,7 +110,7 @@ h1 {
     .sm {
         display: none;
     }
-    body {
+    .page-wrap, .ololo {
     	padding-left: 20px;
     	padding-right: 20px;
     }
@@ -130,4 +131,3 @@ h5.name textarea {
 h5  {
 	font-weight: 500 !important;
 }
-
