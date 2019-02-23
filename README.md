@@ -1,3 +1,8 @@
+# About
+ML powered business names generator with web server and UI. Proof of concept. Industry classification is based on UK ["Standard industrial classification of economic activities (SIC)"](https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic).
+
+Pretrained model checkpoints included as separate download (See [here](https://github.com/vladzima/neuronaming-dev#testing)).
+
 # Installation
 
 Debian / Ubuntu (14.04/16.04). CPU-only.
@@ -220,4 +225,17 @@ If ufw firewall is active:
 ```
 ufw delete allow 5000
 ufw allow 'Nginx Full'
+```
+Please check that the resulting project structure is relevant:
+```
+.
+├── torch-rnn
+│   └── cv
+│       └── ...
+└── site
+    ├── static
+    ├── server.ini
+    ├── server.py
+    ├── storage.dat
+    └── wsgi.py
 ```
