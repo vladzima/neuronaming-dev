@@ -7,6 +7,7 @@ Table of Contents
     - [Torch, luarocks](#torch-luarocks)  
       - [Testing](#testing)   
     - [Nginx and server](#nginx-and-server)
+  * [Custom model](#custom-model)
   * [License](#license)
 
 # About
