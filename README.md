@@ -3,10 +3,10 @@ Table of Contents
 
   * [About](#about)
   * [Installation](#installation)
-    - [Python, virtualenv and rnn](#python-virtualenv-and-rnn)
-    - [Torch, luarocks](#torch-luarocks)  
+    - [Step 1. Python, virtualenv and rnn](#python-virtualenv-and-rnn)
+    - [Step 2. Torch and luarocks](#torch-luarocks)  
       - [Testing](#testing)   
-    - [Nginx and server](#nginx-and-server)
+    - [Step 3. Nginx and wsgi](#nginx-and-server)
   * [Custom model](#custom-model)
   * [License](#license)
 
@@ -23,7 +23,7 @@ Debian / Ubuntu (14.04/16.04). CPU-only.
 
 > Keep in mind, that initial version was create in 2015, so there could be outdates dependencies and such. Please contribute to update the code.
 
-### Python, virtualenv and rnn
+### Step 1. Python, virtualenv and rnn
 
 Install `sudo` and `git` if it's not on the system yet:
 ```
@@ -76,7 +76,7 @@ pip install -r requirements.txt
 ```
 In case `h5py` installation fails, open `requirements.txt` and remove version number: `h5py==2.5.0 > h5py`
 
-### Torch, luarocks
+### Step 2. Torch and luarocks
 
 (Manual: http://torch.ch/docs/getting-started.html)
 
@@ -118,7 +118,7 @@ workon neuronaming
 th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/checkpoint.t7 -length 400 -gpu -1
 ```
 
-### Nginx and server
+### Step 3. Nginx and wsgi
 
 Login as your root user and install `nginx`:
 ```
