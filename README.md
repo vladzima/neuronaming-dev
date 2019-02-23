@@ -246,6 +246,7 @@ Please check that the resulting project structure is relevant:
 │       └── ...
 └── site
     ├── static
+    │   └── ...
     ├── server.ini
     ├── server.py
     ├── storage.dat
