@@ -3,7 +3,7 @@ Table of Contents
 
   * [About](#about)
   * [Installation](#installation)
-    - [Step 1. Python, virtualenv and rnn](#step-1-python-virtualenv-and-rnn)
+    - [Step 1. Python and virtualenv and rnn](#step-1-python-and-virtualenv)
     - [Step 2. Torch and luarocks](#step-2-torch-and-luarocks)  
       - [Testing](#testing)   
     - [Step 3. Nginx and wsgi](#step-3-nginx-and-wsgi)
@@ -23,7 +23,7 @@ Debian / Ubuntu (14.04/16.04). CPU-only.
 
 > Keep in mind, that initial version was create in 2015, so there could be outdates dependencies and such. [Please contribute to update the code.](../master/CONTRIBUTING.md)
 
-### Step 1. Python, virtualenv and rnn
+### Step 1. Python and virtualenv
 
 Install `sudo` and `git` if it's not on the system yet:
 ```
