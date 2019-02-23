@@ -15,7 +15,7 @@ ML powered business names generator with web server and UI. Proof of concept. In
 
 Based on Torch LSTM implementation: [torch-rnn](https://github.com/jcjohnson/torch-rnn) by Justin Johnson.
 
-Pre-trained model checkpoints included as separate download (See [here](#testing)).
+Pre-trained model checkpoints included as separate download (See [here](#testing)). You can also [download](https://storage.googleapis.com/nnnet_storage/cv_full.cpgz) an archive of every checkpoint of model training for each category (heavy lifting alert: ~5GB).
 
 # Installation
 
