@@ -35,6 +35,7 @@ Also `nano` can be a good starter choice for a file editor (used in this guide):
 
 ---
 
+1) Clone this repo:
 ```
 git clone https://github.com/vladzima/neuronaming-dev
 cd neuronaming-dev
@@ -45,31 +46,31 @@ sudo apt-get install libhdf5-dev
 ```
 Debian: `apt-get install python-h5py`
 
-Add user `neuronaming` and include in sudoers:
+2) Add user `neuronaming` and include in sudoers:
 ```
 adduser neuronaming
 usermod -aG sudo neuronaming
 ```
 
-Login as new user:
+3) Login as new user:
 ```
 su - neuronaming
 cd torch-rnn
 ```
 
-Open `nano ~/.bashrc` and add:
+4) Open `nano ~/.bashrc` and add:
 ```
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel/python
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 source ~/.local/bin/virtualenvwrapper.sh
 ```
-Relogin and create virtual env:
+5) Re-login and create virtual env:
 ```
 su - neuronaming
 mkvirtualenv -p python2 neuronaming
 ```
-Install deps:
+6) Install deps:
 ```
 cd ~/torch-rnn
 pip install -r requirements.txt
@@ -80,17 +81,20 @@ In case `h5py` installation fails, open `requirements.txt` and remove version nu
 
 (Manual: http://torch.ch/docs/getting-started.html)
 
+1) In short:
 ```
 git clone https://github.com/torch/distro.git ~/torch
 cd ~/torch; bash install-deps;
 
 # Takes forever!
 ```
+2) Works better with `lua53` instead of standard `luajit`:
 ```
 TORCH_LUA_VERSION=LUA53  ./install.sh
 
 # Answer yes about .bashrc
 ```
+3) Latest `lua-cjson` fails so we need a fixed version:
 ```
 su - neuronaming
 luarocks install torch
@@ -105,14 +109,14 @@ luarocks install lua-cjson 2.1.0
 
 #### Testing
 
-Copy and extract pre-trained model checkpoints directory:
+1) Copy and extract pre-trained model checkpoints directory:
 ```
 cd ~/torch-rnn
 wget https://storage.googleapis.com/nnnet_storage/cv.cpgz
 gzip -cd cv.cpgz | cpio -idmv
 ```
 
-Now test:
+2) Now test:
 ```
 workon neuronaming
 th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/checkpoint.t7 -length 400 -gpu -1
@@ -120,23 +124,24 @@ th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/che
 
 ### Step 3. Nginx and wsgi
 
-Login as your root user and install `nginx`:
+1) Login as your root user and install `nginx`:
 ```
 sudo apt-get update
 sudo apt-get install nginx
 ```
 
-Install `virtualenv` и `virtualenvwrapper` again, as Flask likes Python3:
+2) Install `virtualenv` и `virtualenvwrapper` again, as Flask likes Python3:
 ```
 sudo apt-get install python3-pip
 pip3 install virtualenv virtualenvwrapper
 su - neuronaming
 ```
-Open `nano ~/.bashrc` and add:
+3) Open `nano ~/.bashrc` and add:
 ```
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 ```
+4) Create new `env-name`:
 ```
 su - neuronaming
 mkvirtualenv env-name
@@ -145,12 +150,12 @@ pip3 install uwsgi flask
 
 If ufw firewall is on: `ufw allow 5000`
 
-Create socket:
+5) Create socket:
 ```
 mkfifo /home/neuronaming/site/server.sock
 ```
 
-Create autostart script:
+6) Create autostart script:
 
 ###### For Ubuntu 14.04
 ```
@@ -192,7 +197,7 @@ ExecStart=/home/neuronaming/.virtualenvs/neuronaming/bin/uwsgi --ini server.ini
 [Install]
 WantedBy=multi-user.target
 ```
-Start `wsgi`:
+7) Start `wsgi`:
 ###### For Ubuntu 14.04
 ```
 sudo start server
@@ -203,7 +208,7 @@ sudo systemctl start server
 sudo systemctl enable server
 ```
 
-Open nginx conf: `nano /etc/nginx/sites-available/default` and copy:
+8) Open nginx conf: `nano /etc/nginx/sites-available/default` and copy:
 ```
 server {
     listen 80 default_server;
@@ -223,7 +228,7 @@ server {
 # Insert actual domain in place of DOMAIN
 ```
 
-Restart nginx:
+9) Restart nginx:
 ###### For Ubuntu 14.04
 ```
 sudo service nginx restart
@@ -238,6 +243,9 @@ If ufw firewall is active:
 ufw delete allow 5000
 ufw allow 'Nginx Full'
 ```
+
+---
+
 Please check that the resulting project structure is relevant:
 ```
 .
