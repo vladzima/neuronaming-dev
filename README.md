@@ -1,4 +1,4 @@
-![Neuronaming](https://neuronaming.net/images/share2.png "Neuronaming")
+![Neuronaming](https://github.com/vladzima/neuronaming-dev/blob/master/docs/images/github.png)
 
 Table of Contents
 =================
