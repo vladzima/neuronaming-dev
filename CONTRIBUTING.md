@@ -9,11 +9,11 @@ Please keep in mind, that initial version was create in 2015, so there could be 
 
 ## Submitting changes
 
-This project uses [conventional changelog](https://github.com/conventional-changelog/conventional-changelog) provided by [Commitizen](https://github.com/commitizen/cz-cli).
+This project uses customized [conventional changelog](https://github.com/conventional-changelog/conventional-changelog) provided by [Commitizen](https://github.com/commitizen/cz-cli).
 
 1) To commit your changes first run:
 ```
-npm install commitizen -g && npm install -g cz-conventional-changelog
+npm install commitizen -g && npm install cz-customizable -g
 ```
 2) And then use `git cz` instead of `git commit` (`cz` works with all standard git parameters, [more](https://github.com/commitizen/cz-cli) on the usage). You will be presented with a prompt, please choose your options carefully.
 

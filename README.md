@@ -275,7 +275,7 @@ To train your own model and use in to generate new text, please consult with the
 
 # Contribute
 
-See the [Contribution guide](../master/CONTRIBUTING.md). Please make sure to use [conventional changelog](https://github.com/conventional-changelog/conventional-changelog).
+See the [Contribution guide](../master/CONTRIBUTING.md). Please make sure to use [conventional changelog](https://github.com/conventional-changelog/conventional-changelog),  customized for this project.
 
 # License
 
