@@ -1,6 +1,7 @@
 ![Neuronaming](https://github.com/vladzima/neuronaming-dev/blob/master/images/github.png)
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Build Status](https://travis-ci.org/vladzima/neuronaming-dev.svg?branch=master)](https://travis-ci.org/vladzima/neuronaming-dev)
 
 Table of Contents
 =================
