@@ -18,7 +18,8 @@ module.exports = {
   scopes: [
     {name: 'static'},
     {name: 'server'},
-    {name: 'ml'}
+    {name: 'ml'},
+    {name: '*'}
   ],
 
   // it needs to match the value for field type. Eg.: 'fix'
