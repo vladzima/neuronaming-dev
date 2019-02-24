@@ -11,6 +11,6 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
-          - echo "skipping tests"
+          - make
           - nvm install lts/*
           - npx semantic-release
