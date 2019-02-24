@@ -11,6 +11,6 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
-          # Use nvm to install and use the Node LTS version (nvm is installed on all Travis images)
+          - echo "skipping tests"
           - nvm install lts/*
           - npx semantic-release
