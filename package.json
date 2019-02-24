@@ -1,0 +1,23 @@
+{
+  "name": "neuronaming-dev",
+  "version": "0.0.0-development",
+  "description": "![Neuronaming](https://github.com/vladzima/neuronaming-dev/blob/master/images/github.png)",
+  "main": ".cz-config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vladzima/neuronaming-dev.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vladzima/neuronaming-dev/issues"
+  },
+  "homepage": "https://github.com/vladzima/neuronaming-dev#readme",
+  "devDependencies": {
+    "semantic-release": "^15.13.3"
+  }
+}
