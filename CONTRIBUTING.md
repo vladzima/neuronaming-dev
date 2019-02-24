@@ -9,10 +9,15 @@ Please keep in mind, that initial version was create in 2015, so there could be 
 
 ## Submitting changes
 
+This project uses [conventional changelog](https://github.com/conventional-changelog/conventional-changelog) provided by [Commitizen](https://github.com/commitizen/cz-cli).
+
+1) To commit your changes first run:
+```
+npm install commitizen -g
+npm install # Inside project directory
+```
+2) And then use `git cz` instead of `git commit`. You will be presented with a prompt, please choose your options carefully.
+
 Please send a [GitHub Pull Request to neuronaming-dev](https://github.com/vladzima/neuronaming-dev/pull/new/master) with a clear list of what you've done (read more about [pull requests](https://help.github.com/en/articles/about-pull-requests)).
 
-Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
-
-    $ git commit -m "A brief summary of the commit
-    > 
-    > A paragraph describing what changed and its impact."
+**Changes to `gh-pages` branch will not be merged. Please commit to `master`.**
