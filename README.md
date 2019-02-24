@@ -9,7 +9,7 @@ Table of Contents
     - [Step 2. Torch and luarocks](#step-2-torch-and-luarocks)  
       - [Testing](#testing)   
     - [Step 3. Nginx and wsgi](#step-3-nginx-and-wsgi)
-  * [Custom model](#custom-model)
+  * [Custom models](#custom-models)
   * [Contribute](#contribute)
   * [License](#license)
 
@@ -267,7 +267,7 @@ Please check that the resulting project structure is relevant:
     ├── storage.dat
     └── wsgi.py
 ```
-# Custom model
+# Custom models
 
 To train your own model and use in to generate new text, please consult with the original torch-rnn manual: https://github.com/jcjohnson/torch-rnn#usage.
 
