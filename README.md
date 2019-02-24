@@ -112,7 +112,7 @@ luarocks install lua-cjson 2.1.0
 # Takes time!
 ```
 
-**Attention!** You always need to initiate `th` from the same directory where `torch-rnn/LanguageModel.lua` is. The easiest way to ensure this is to add `cd ABSOLUTE_PATH/torch-rnn` before `exec` to `torch/install/bin/th`.
+**Attention!** You always need to initiate `th` from the same directory where `torch-rnn/LanguageModel.lua` is. The easiest way is to add `cd ABSOLUTE_PATH/torch-rnn` before `exec` to `torch/install/bin/th`.
 
 #### Testing
 
