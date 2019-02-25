@@ -2,7 +2,7 @@
 
 Please keep in mind, that initial version was create in 2015, so there could be outdates dependencies and such. Also, the model approach is pretty old, so any contribution to the ML part is highly appreciated.
 
-You can consult with [Wiki](https://github.com/vladzima/neuronaming-dev/wiki) on available torch-rnn Modules and Flags.
+> You can consult with [Wiki](https://github.com/vladzima/neuronaming-dev/wiki) on available torch-rnn Modules and Flags.
 
 ## Data available
 
