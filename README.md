@@ -12,8 +12,10 @@ Table of Contents
     - [Step 2. Torch and luarocks](#step-2-torch-and-luarocks)  
       - [Testing](#testing)   
     - [Step 3. Nginx and wsgi](#step-3-nginx-and-wsgi)
+  * [Customizing output](#customizing-output)
   * [Custom models](#custom-models)
   * [Contribute](#contribute)
+  * [Todo](#todo)
   * [License](#license)
 
 # About
@@ -270,6 +272,28 @@ Please check that the resulting project structure is relevant:
     ├── storage.dat
     └── wsgi.py
 ```
+# Customizing output
+
+The sampling script `sample.lua` accepts command-line flags. You can utilize these:
+- `-checkpoint`: Path to a different `.t7` checkpoint file (if you downloaded [full trained data](https://github.com/vladzima/neuronaming-dev/blob/master/CONTRIBUTING.md#data-available))
+- `-length`: The length of the generated text, in characters.
+- `-start_text`: You can optionally start off the generation process with a string; if this is provided the start text will be processed by the trained network before we start sampling. Without this flag, the first character is chosen randomly.
+- `-sample`: Set this to 1 to sample from the next-character distribution at each timestep; set to 0 to instead just pick the argmax at every timestep. Sampling tends to produce more interesting results.
+- `-temperature`: Softmax temperature to use when sampling; default is 1. Higher temperatures give noiser samples. Not used when using argmax sampling (`sample` set to 0).
+- `-verbose`: By default just the sampled text is printed to the console. Set this to 1 to also print some diagnostic information.
+
+Note: GPU related flags [mentioned in the Wiki](https://github.com/vladzima/neuronaming-dev/wiki/Flags) are not applicable since we compiled torch without GPU support.
+
+The sample request script looks like this:
+```
+th /home/neuronaming/torch-rnn/sample.lua -checkpoint /home/neuronaming/cv/C/checkpoint.t7 -length 400 -gpu -1
+```
+
+You can modify the following sampling code in [server.py](https://github.com/vladzima/neuronaming-dev/blob/master/site/server.py) in case you want to change the output on the frontend:
+```
+result = check_output(['/home/neuronaming/torch/install/bin/th', 'sample.lua', '-checkpoint', 'cv/'+category+'/checkpoint.t7', '-length', '400', '-gpu', '-1'])
+```
+
 # Custom models
 
 To train your own model and use in to generate new text, please consult with the original torch-rnn manual: https://github.com/jcjohnson/torch-rnn#usage.
@@ -277,6 +301,9 @@ To train your own model and use in to generate new text, please consult with the
 # Contribute
 
 See the [Contribution guide](../master/CONTRIBUTING.md). Please make sure to use [conventional changelog](https://github.com/conventional-changelog/conventional-changelog),  customized for this project.
+
+# Todo
+[x] Explain different parameters in sampling
 
 # License
 
@@ -301,7 +328,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-### Todo
-[ ] explain different params in sample extraction
