@@ -1,5 +1,6 @@
 ![Neuronaming](https://github.com/vladzima/neuronaming-dev/blob/master/images/github.png)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Build Status](https://travis-ci.org/vladzima/neuronaming-dev.svg?branch=master)](https://travis-ci.org/vladzima/neuronaming-dev)
 
